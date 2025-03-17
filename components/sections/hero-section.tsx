@@ -1,24 +1,39 @@
-import Image from "next/image"
+import Image from "next/image";
+import "../../styles/globals.css";
+import logoString from "@/public/logoString.png";
+import string from "@/public/string3.png";
+import { logos } from "@/data/data";
+import { useTheme } from "next-themes";
 
 export function HeroSection() {
+  // const { theme } = useTheme();
+
   return (
-    <section className="relative overflow-hidden bg-[#111827] py-20 md:py-32">
-      <div className="container relative z-10">
-        <div className="mx-auto max-w-3xl">
-          <div className="mb-8 inline-flex items-center rounded-full bg-[#1e293b]/40 px-4 py-1.5">
-            <span className="text-sm font-medium text-[#3EC9FF]">YOUR PARTNER IN TECH SUCCESS</span>
+    <section className="relative overflow-hidden bg-white dark:bg-gray-950">
+      <div className="absolute opacity-30 -z-4 dark:opacity-5 top-2 right-0 rotate-180">
+        <Image src={logoString} alt="string" width={3000} />
+      </div>
+
+      <div className="container relative z-10 py-14 md:py-32">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-4 inline-flex items-center rounded-full bg-slate-100 dark:bg-[#192232] px-4 py-1.5 border dark:border-gray-700">
+            <span className="text-sm font-medium dark:text-primary">
+              YOUR PARTNER IN TECH SUCCESS
+            </span>
           </div>
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Where Innovation Meets Precision Engineering<span className="text-[#3EC9FF]">.</span>
+          <h1 className="mb-6 text-4xl font-bold tracking-tight text-gray-800 dark:text-white sm:text-5xl md:text-6xl">
+            Where Innovation Meets Precision Engineering
+            <span className="text-primary">.</span>
           </h1>
-          <p className="mb-10 text-xl text-gray-300">
-            As a trusted leader in digital solutions, we excel in designing and developing custom software and
-            applications tailored to meet your unique needs.
+          <p className="mb-10 text-xl text-gray-600 dark:text-gray-300">
+            As a trusted leader in digital solutions, we excel in designing and
+            developing custom software and applications tailored to meet your
+            unique needs.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 text-center justify-center">
             <a
-              href="/contact"
-              className="inline-flex h-11 items-center justify-center rounded-md bg-[#3EC9FF] px-8 text-sm font-medium text-white shadow transition-colors hover:bg-[#3EC9FF]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3EC9FF] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              href="/schedule"
+              className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-[#3EC9FF]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3EC9FF] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             >
               Get Free Consultation
               <svg
@@ -28,7 +43,12 @@ export function HeroSection() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
               </svg>
             </a>
           </div>
@@ -36,46 +56,38 @@ export function HeroSection() {
       </div>
 
       {/* Trusted Companies Logos */}
-      <div className="relative z-10 py-6 mt-10 bg-[#0c1322]/80 backdrop-blur-sm">
-        <div className="container">
-          <p className="text-center text-sm font-medium text-gray-400 mb-4">TRUSTED BY LEADING COMPANIES</p>
-          <div className="logos-slide-container overflow-hidden whitespace-nowrap">
-            <div className="logos-slide inline-block animate-marquee">
-              {[1, 2, 3, 4, 5, 6].map((logo) => (
-                <div key={logo} className="inline-block mx-8">
-                  <div className="h-8 w-24 bg-gray-500/20 rounded flex items-center justify-center">
-                    <span className="text-gray-300 text-xs">COMPANY {logo}</span>
-                  </div>
+      <div className="relative z-10 py-6 mt-10">
+        <div className="overflow-hidden whitespace-nowrap">
+          <div className="flex justify-center items-center gap-4 flex-wrap">
+            {logos.map((logo) => (
+              <div key={logo.id} className="inline-block mx-8">
+                <div className="h-16 w-40  rounded flex items-center justify-center">
+                  {/* Render the image */}
+                  <Image
+                    src={logo.logoLight}
+                    alt={logo.name}
+                    width={100}
+                    height={50}
+                    className="h-12 w-auto object-contain"
+                  />
                 </div>
-              ))}
-            </div>
-            <div className="logos-slide inline-block animate-marquee2">
-              {[1, 2, 3, 4, 5, 6].map((logo) => (
-                <div key={logo} className="inline-block mx-8">
-                  <div className="h-8 w-24 bg-gray-500/20 rounded flex items-center justify-center">
-                    <span className="text-gray-300 text-xs">COMPANY {logo}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Team Image */}
-      <div className="relative z-10 mt-12">
+      <div className="relative z-10 mt-12 opacity-90">
         <Image
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/111.jpg-aCam7uUfBGj7sYmKyXdrSIpYO6K0yU.jpeg"
           alt="Ororasoft Team Collaboration"
           width={2000}
           height={300}
-          className="w-full h-[300px] object-cover"
+          className="w-full h-[400px] object-cover"
           priority
         />
       </div>
-
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
     </section>
-  )
+  );
 }
-

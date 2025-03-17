@@ -16,7 +16,7 @@ export function Header() {
   const { theme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background dark:bg-gray-950 border-b light:border-gray-200 ">
       <div className="container flex h-16 items-center justify-between">
         {/* Left side (Logo) */}
         <div className="flex items-center">
@@ -40,7 +40,11 @@ export function Header() {
         {/* Right side (Contact, Theme Toggle, Mobile Menu) */}
         <div className="flex items-center gap-4">
           <Link href="/contact" className="hidden md:inline-flex">
-            <Button variant="outline" size="sm" className="gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 px-6 bg-gray-700 hover:bg-gray-800 text-white hover:text-white"
+            >
               <PhoneCall className="h-4 w-4" />
               Contact Us
             </Button>
@@ -54,7 +58,6 @@ export function Header() {
               </Button>
             </SheetTrigger>
 
-            {/* mobile menu */}
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col gap-4">
                 <Link
@@ -86,12 +89,7 @@ export function Header() {
                 >
                   Blog
                 </Link>
-                <Link
-                  href="/contact"
-                  className="text-lg font-medium transition-colors hover:text-primary"
-                >
-                  Contact
-                </Link>
+
                 <Link href="/contact" className="mt-4">
                   <Button className="w-full gap-2">
                     <PhoneCall className="h-4 w-4" />

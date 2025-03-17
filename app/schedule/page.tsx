@@ -18,17 +18,23 @@ export default function SchedulePage() {
   const calendlyUsername = "ororasoft";
 
   return (
-    <div className="container py-12">
-      <div className="mx-auto max-w-4xl space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Schedule a Consultation
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            Book a free consultation with our team to discuss your project needs
-          </p>
+    <section>
+      <div className="bg-[#111827] py-16 ">
+        <div className="container z-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="mb-6 text-5xl font-bold tracking-tight text-white">
+              Schedule a Consultation<span className="text-[#3EC9FF]">.</span>
+            </h1>
+            <p className="mb-8 text-xl text-gray-300">
+              Book a free consultation with our team to discuss your project
+              needs
+            </p>
+          </div>
         </div>
+        {/* <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div> */}
+      </div>
 
+      <div className="mx-auto max-w-4xl space-y-8 my-12 border-none">
         <div className="grid gap-8">
           <Card>
             <CardHeader>
@@ -39,7 +45,7 @@ export default function SchedulePage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="min-h-[600px] w-full">
+              <div className="min-h-[300px] w-full">
                 <CalendlyEmbed username={calendlyUsername} />
               </div>
             </CardContent>
@@ -48,7 +54,9 @@ export default function SchedulePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle>Discuss Your Needs</CardTitle>
+                <CardTitle className="text-primary">
+                  Discuss Your Needs
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p>
@@ -60,7 +68,9 @@ export default function SchedulePage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Get Expert Advice</CardTitle>
+                <CardTitle className="text-primary">
+                  Get Expert Advice
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p>
@@ -72,7 +82,7 @@ export default function SchedulePage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Plan Next Steps</CardTitle>
+                <CardTitle className="text-primary">Plan Next Steps</CardTitle>
               </CardHeader>
               <CardContent>
                 <p>
@@ -84,6 +94,6 @@ export default function SchedulePage() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
