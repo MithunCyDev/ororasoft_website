@@ -14,9 +14,26 @@ import blackLogo from "@/public/ororablack.png";
 
 export function Header() {
   const { theme } = useTheme();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    // Check initial scroll position
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isScrolled]);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background dark:bg-gray-950 border-b light:border-gray-200 ">
+    <header
+      className={`sticky top-5 z-50 w-[90%] mx-auto rounded-md bg-background dark:bg-gray-950 ${
+        isScrolled && "shadow-md shadow-[#00000010] dark:shadow-[#3ec8ff16]"
+      } transition-all duration-300`}
+    >
       <div className="container flex h-16 items-center justify-between">
         {/* Left side (Logo) */}
         <div className="flex items-center">
@@ -43,7 +60,7 @@ export function Header() {
             <Button
               variant="outline"
               size="sm"
-              className="gap-2 px-6 bg-gray-700 hover:bg-gray-800 text-white hover:text-white"
+              className="gap-2 px-6 bg-gray-800 hover:bg-gray-900 text-white hover:text-white"
             >
               <PhoneCall className="h-4 w-4" />
               Contact Us
@@ -62,28 +79,35 @@ export function Header() {
               <nav className="flex flex-col gap-4">
                 <Link
                   href="/"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="text-xl font-medium transition-colors hover:text-primary"
                 >
                   Home
                 </Link>
 
                 <Link
                   href="/about"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="text-xl font-medium transition-colors hover:text-primary"
                 >
                   About
                 </Link>
 
                 <Link
                   href="/services"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="text-xl font-medium transition-colors hover:text-primary"
                 >
                   Services
                 </Link>
 
                 <Link
+                  href="/careers"
+                  className="flex items-center text-xl font-medium transition-colors hover:text-primary"
+                >
+                  Careers
+                </Link>
+
+                <Link
                   href="https://ororasoft.blog"
-                  className="text-lg font-medium transition-colors hover:text-primary"
+                  className="text-xl font-medium transition-colors hover:text-primary"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -91,10 +115,13 @@ export function Header() {
                 </Link>
 
                 <Link href="/contact" className="mt-4">
-                  <Button className="w-full gap-2">
-                    <PhoneCall className="h-4 w-4" />
+                  <button
+                    className=" flex items-center justify-center font-medium rounded-md p-2 w-full gap-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-800
+                   text-gray-800 dark:text-gray-200 hover:text-white transition-all duration-150"
+                  >
+                    <PhoneCall className="h-4 w-4 text-[#3EC9FF]" />
                     Contact Us
-                  </Button>
+                  </button>
                 </Link>
               </nav>
             </SheetContent>

@@ -1,5 +1,5 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -13,18 +13,23 @@ import {
   MapPin,
   Search,
   Users,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const metadata = {
   title: "Careers | Ororasoft",
   description:
     "Join our team of talented professionals and build innovative solutions that make a difference. Explore current job openings and learn about our company culture.",
-}
+};
 
 // This would typically come from a database or API
 const jobOpenings = [
@@ -160,7 +165,8 @@ const jobOpenings = [
     location: "Remote",
     type: "Full-time",
     experience: "2+ years",
-    description: "We're seeking a Marketing Specialist to help grow our brand and generate leads for our services.",
+    description:
+      "We're seeking a Marketing Specialist to help grow our brand and generate leads for our services.",
     responsibilities: [
       "Develop and implement marketing strategies",
       "Create content for various channels (blog, social media, email)",
@@ -177,13 +183,15 @@ const jobOpenings = [
     ],
     featured: false,
   },
-]
+];
 
 // Get featured jobs
-const featuredJobs = jobOpenings.filter((job) => job.featured)
+const featuredJobs = jobOpenings.filter((job) => job.featured);
 
 // Get all departments
-const departments = Array.from(new Set(jobOpenings.map((job) => job.department)))
+const departments = Array.from(
+  new Set(jobOpenings.map((job) => job.department))
+);
 
 export default function CareersPage() {
   return (
@@ -196,11 +204,16 @@ export default function CareersPage() {
               Join Our Team<span className="text-[#3EC9FF]">.</span>
             </h1>
             <p className="mb-8 text-xl text-gray-300">
-              Build your career at Ororasoft and work on innovative solutions that make a difference. We're always
-              looking for talented individuals to join our team.
+              Build your career at Ororasoft and work on innovative solutions
+              that make a difference. We're always looking for talented
+              individuals to join our team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
+              <Button
+                asChild
+                size="lg"
+                className="bg-white text-primary hover:bg-white/90"
+              >
                 <a href="#openings">View Open Positions</a>
               </Button>
               <Button
@@ -222,12 +235,17 @@ export default function CareersPage() {
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 mb-4">
-              <span className="text-sm font-medium text-primary">WHY JOIN US</span>
+              <span className="text-sm font-medium text-primary">
+                WHY JOIN US
+              </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Culture & Values</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Our Culture & Values
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              At Ororasoft, we believe in creating an environment where talented individuals can thrive, innovate, and
-              grow both personally and professionally.
+              At Ororasoft, we believe in creating an environment where talented
+              individuals can thrive, innovate, and grow both personally and
+              professionally.
             </p>
           </div>
 
@@ -270,7 +288,10 @@ export default function CareersPage() {
                   "We provide clear career paths and opportunities for advancement based on skills and contributions.",
               },
             ].map((value, index) => (
-              <div key={index} className="p-8 rounded-xl border bg-card hover:shadow-md transition-shadow">
+              <div
+                key={index}
+                className="p-8 rounded-xl border bg-card hover:shadow-md transition-shadow"
+              >
                 <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 mb-6">
                   <value.icon className="h-6 w-6 text-primary" />
                 </div>
@@ -288,11 +309,16 @@ export default function CareersPage() {
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>
               <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 mb-4">
-                <span className="text-sm font-medium text-primary">BENEFITS & PERKS</span>
+                <span className="text-sm font-medium text-primary">
+                  BENEFITS & PERKS
+                </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">We Take Care of Our Team</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                We Take Care of Our Team
+              </h2>
               <p className="text-muted-foreground mb-8">
-                We offer a comprehensive benefits package designed to support your health, wealth, and well-being.
+                We offer a comprehensive benefits package designed to support
+                your health, wealth, and well-being.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -310,17 +336,32 @@ export default function CareersPage() {
                   {
                     icon: Coffee,
                     title: "Work & Life",
-                    items: ["Flexible work hours", "Remote work options", "Unlimited PTO", "Paid parental leave"],
+                    items: [
+                      "Flexible work hours",
+                      "Remote work options",
+                      "Unlimited PTO",
+                      "Paid parental leave",
+                    ],
                   },
                   {
                     icon: Building2,
                     title: "Financial Benefits",
-                    items: ["Competitive salary", "401(k) matching", "Stock options", "Performance bonuses"],
+                    items: [
+                      "Competitive salary",
+                      "401(k) matching",
+                      "Stock options",
+                      "Performance bonuses",
+                    ],
                   },
                   {
                     icon: GraduationCap,
                     title: "Growth & Development",
-                    items: ["Learning stipend", "Conference budget", "Mentorship program", "Career advancement"],
+                    items: [
+                      "Learning stipend",
+                      "Conference budget",
+                      "Mentorship program",
+                      "Career advancement",
+                    ],
                   },
                 ].map((benefit, index) => (
                   <div key={index} className="space-y-3">
@@ -359,11 +400,16 @@ export default function CareersPage() {
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 mb-4">
-              <span className="text-sm font-medium text-primary">LIFE AT ORORASOFT</span>
+              <span className="text-sm font-medium text-primary">
+                LIFE AT ORORASOFT
+              </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Meet Our Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Meet Our Team
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Get a glimpse of our company culture and the amazing people who make Ororasoft a great place to work.
+              Get a glimpse of our company culture and the amazing people who
+              make Ororasoft a great place to work.
             </p>
           </div>
 
@@ -457,11 +503,16 @@ export default function CareersPage() {
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 mb-4">
-              <span className="text-sm font-medium text-primary">EMPLOYEE TESTIMONIALS</span>
+              <span className="text-sm font-medium text-primary">
+                EMPLOYEE TESTIMONIALS
+              </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">What Our Team Says</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              What Our Team Says
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Hear directly from our team members about their experiences working at Ororasoft.
+              Hear directly from our team members about their experiences
+              working at Ororasoft.
             </p>
           </div>
 
@@ -493,7 +544,9 @@ export default function CareersPage() {
               },
             ].map((testimonial, index) => (
               <div key={index} className="p-8 rounded-xl border bg-card">
-                <blockquote className="text-muted-foreground italic mb-6">"{testimonial.quote}"</blockquote>
+                <blockquote className="text-muted-foreground italic mb-6">
+                  "{testimonial.quote}"
+                </blockquote>
                 <div className="flex items-center">
                   <div className="mr-4">
                     <div className="h-12 w-12 rounded-full overflow-hidden">
@@ -508,8 +561,12 @@ export default function CareersPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold">{testimonial.name}</h3>
-                    <p className="text-sm text-muted-foreground">{testimonial.position}</p>
-                    <p className="text-xs text-muted-foreground">{testimonial.tenure}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.position}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {testimonial.tenure}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -526,11 +583,16 @@ export default function CareersPage() {
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 mb-4">
-              <span className="text-sm font-medium text-primary">OPEN POSITIONS</span>
+              <span className="text-sm font-medium text-primary">
+                OPEN POSITIONS
+              </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Our Growing Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Join Our Growing Team
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Explore our current job openings and find the perfect role for your skills and career goals.
+              Explore our current job openings and find the perfect role for
+              your skills and career goals.
             </p>
           </div>
 
@@ -561,10 +623,16 @@ export default function CareersPage() {
                       <div className="absolute top-0 left-0 w-1 h-full bg-primary"></div>
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-4">
-                          <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">
+                          <Badge
+                            variant="outline"
+                            className="bg-primary/10 hover:bg-primary/20"
+                          >
                             {job.department}
                           </Badge>
-                          <Badge variant="outline" className="bg-muted hover:bg-muted/80">
+                          <Badge
+                            variant="outline"
+                            className="bg-muted hover:bg-muted/80"
+                          >
                             {job.type}
                           </Badge>
                         </div>
@@ -582,7 +650,9 @@ export default function CareersPage() {
                           </div>
                         </div>
 
-                        <p className="text-muted-foreground mb-6">{job.description}</p>
+                        <p className="text-muted-foreground mb-6">
+                          {job.description}
+                        </p>
 
                         <Button asChild>
                           <Link href={`/careers/${job.id}`}>
@@ -608,10 +678,16 @@ export default function CareersPage() {
                       >
                         <div className="mb-4 md:mb-0">
                           <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">
+                            <Badge
+                              variant="outline"
+                              className="bg-primary/10 hover:bg-primary/20"
+                            >
                               {job.department}
                             </Badge>
-                            <Badge variant="outline" className="bg-muted hover:bg-muted/80">
+                            <Badge
+                              variant="outline"
+                              className="bg-muted hover:bg-muted/80"
+                            >
                               {job.type}
                             </Badge>
                           </div>
@@ -638,10 +714,14 @@ export default function CareersPage() {
               </TabsContent>
 
               <TabsContent value="engineering">
-                <h3 className="text-2xl font-bold mb-6">Engineering Positions</h3>
+                <h3 className="text-2xl font-bold mb-6">
+                  Engineering Positions
+                </h3>
                 <div className="space-y-4">
                   {jobOpenings
-                    .filter((job) => job.department === "Engineering" && !job.featured)
+                    .filter(
+                      (job) => job.department === "Engineering" && !job.featured
+                    )
                     .map((job, index) => (
                       <div
                         key={index}
@@ -649,10 +729,16 @@ export default function CareersPage() {
                       >
                         <div className="mb-4 md:mb-0">
                           <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">
+                            <Badge
+                              variant="outline"
+                              className="bg-primary/10 hover:bg-primary/20"
+                            >
                               {job.department}
                             </Badge>
-                            <Badge variant="outline" className="bg-muted hover:bg-muted/80">
+                            <Badge
+                              variant="outline"
+                              className="bg-muted hover:bg-muted/80"
+                            >
                               {job.type}
                             </Badge>
                           </div>
@@ -690,10 +776,16 @@ export default function CareersPage() {
                       >
                         <div className="mb-4 md:mb-0">
                           <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">
+                            <Badge
+                              variant="outline"
+                              className="bg-primary/10 hover:bg-primary/20"
+                            >
                               {job.department}
                             </Badge>
-                            <Badge variant="outline" className="bg-muted hover:bg-muted/80">
+                            <Badge
+                              variant="outline"
+                              className="bg-muted hover:bg-muted/80"
+                            >
                               {job.type}
                             </Badge>
                           </div>
@@ -720,7 +812,9 @@ export default function CareersPage() {
               </TabsContent>
 
               <TabsContent value="management">
-                <h3 className="text-2xl font-bold mb-6">Management Positions</h3>
+                <h3 className="text-2xl font-bold mb-6">
+                  Management Positions
+                </h3>
                 <div className="space-y-4">
                   {jobOpenings
                     .filter((job) => job.department === "Management")
@@ -731,10 +825,16 @@ export default function CareersPage() {
                       >
                         <div className="mb-4 md:mb-0">
                           <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">
+                            <Badge
+                              variant="outline"
+                              className="bg-primary/10 hover:bg-primary/20"
+                            >
                               {job.department}
                             </Badge>
-                            <Badge variant="outline" className="bg-muted hover:bg-muted/80">
+                            <Badge
+                              variant="outline"
+                              className="bg-muted hover:bg-muted/80"
+                            >
                               {job.type}
                             </Badge>
                           </div>
@@ -769,11 +869,16 @@ export default function CareersPage() {
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 mb-4">
-              <span className="text-sm font-medium text-primary">APPLICATION PROCESS</span>
+              <span className="text-sm font-medium text-primary">
+                APPLICATION PROCESS
+              </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">How to Join Our Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              How to Join Our Team
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our hiring process is designed to be transparent, efficient, and respectful of your time.
+              Our hiring process is designed to be transparent, efficient, and
+              respectful of your time.
             </p>
           </div>
 
@@ -782,7 +887,8 @@ export default function CareersPage() {
               {
                 step: "1",
                 title: "Application",
-                description: "Submit your application through our careers page with your resume and cover letter.",
+                description:
+                  "Submit your application through our careers page with your resume and cover letter.",
               },
               {
                 step: "2",
@@ -803,7 +909,10 @@ export default function CareersPage() {
                   "Meet with the team you'll be working with and discuss your potential role in more detail.",
               },
             ].map((step, index) => (
-              <div key={index} className="relative p-8 rounded-xl border bg-card hover:shadow-md transition-shadow">
+              <div
+                key={index}
+                className="relative p-8 rounded-xl border bg-card hover:shadow-md transition-shadow"
+              >
                 <div className="absolute -top-5 left-8 flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold">
                   {step.step}
                 </div>
@@ -815,8 +924,9 @@ export default function CareersPage() {
 
           <div className="text-center mt-12">
             <p className="text-muted-foreground mb-6">
-              After the final interview, we aim to make a decision within one week. If you're selected, we'll send you
-              an offer letter with all the details about your role, compensation, and benefits.
+              After the final interview, we aim to make a decision within one
+              week. If you're selected, we'll send you an offer letter with all
+              the details about your role, compensation, and benefits.
             </p>
             <Button asChild size="lg">
               <Link href="/contact">Have Questions? Contact Us</Link>
@@ -830,60 +940,80 @@ export default function CareersPage() {
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 mb-4">
-              <span className="text-sm font-medium text-primary">FREQUENTLY ASKED QUESTIONS</span>
+              <span className="text-sm font-medium text-primary">
+                FREQUENTLY ASKED QUESTIONS
+              </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Common Questions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Common Questions
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Find answers to common questions about working at Ororasoft and our hiring process.
+              Find answers to common questions about working at Ororasoft and
+              our hiring process.
             </p>
           </div>
 
           <div className="mx-auto max-w-3xl">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger>What is the interview process like?</AccordionTrigger>
+                <AccordionTrigger>
+                  What is the interview process like?
+                </AccordionTrigger>
                 <AccordionContent>
-                  Our interview process typically consists of an initial screening call, followed by a technical or
-                  skills assessment, and finally a team interview. The entire process usually takes 2-3 weeks, and we
-                  strive to provide feedback at each stage.
+                  Our interview process typically consists of an initial
+                  screening call, followed by a technical or skills assessment,
+                  and finally a team interview. The entire process usually takes
+                  2-3 weeks, and we strive to provide feedback at each stage.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger>Do you offer remote work options?</AccordionTrigger>
+                <AccordionTrigger>
+                  Do you offer remote work options?
+                </AccordionTrigger>
                 <AccordionContent>
-                  Yes, we are a remote-first company. While we have offices in several locations, most of our team
-                  members work remotely. We provide the tools and support needed to work effectively from anywhere.
+                  Yes, we are a remote-first company. While we have offices in
+                  several locations, most of our team members work remotely. We
+                  provide the tools and support needed to work effectively from
+                  anywhere.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger>What benefits do you offer?</AccordionTrigger>
                 <AccordionContent>
-                  We offer a comprehensive benefits package including health insurance, dental and vision coverage,
-                  401(k) matching, unlimited PTO, paid parental leave, learning stipends, and more. Benefits may vary by
-                  location and employment status.
+                  We offer a comprehensive benefits package including health
+                  insurance, dental and vision coverage, 401(k) matching,
+                  unlimited PTO, paid parental leave, learning stipends, and
+                  more. Benefits may vary by location and employment status.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
-                <AccordionTrigger>How do you support professional development?</AccordionTrigger>
+                <AccordionTrigger>
+                  How do you support professional development?
+                </AccordionTrigger>
                 <AccordionContent>
-                  We support professional development through learning stipends, conference budgets, internal mentorship
-                  programs, regular skill-sharing sessions, and clear career advancement paths. We encourage continuous
-                  learning and growth.
+                  We support professional development through learning stipends,
+                  conference budgets, internal mentorship programs, regular
+                  skill-sharing sessions, and clear career advancement paths. We
+                  encourage continuous learning and growth.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5">
-                <AccordionTrigger>What is your company culture like?</AccordionTrigger>
+                <AccordionTrigger>
+                  What is your company culture like?
+                </AccordionTrigger>
                 <AccordionContent>
-                  Our culture is collaborative, innovative, and focused on work-life balance. We value diverse
-                  perspectives, open communication, and mutual respect. We work hard but also prioritize well-being and
-                  personal time.
+                  Our culture is collaborative, innovative, and focused on
+                  work-life balance. We value diverse perspectives, open
+                  communication, and mutual respect. We work hard but also
+                  prioritize well-being and personal time.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-6">
                 <AccordionTrigger>Do you sponsor work visas?</AccordionTrigger>
                 <AccordionContent>
-                  Yes, we do sponsor work visas for exceptional candidates when necessary. This is evaluated on a
-                  case-by-case basis depending on the role and location.
+                  Yes, we do sponsor work visas for exceptional candidates when
+                  necessary. This is evaluated on a case-by-case basis depending
+                  on the role and location.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -901,10 +1031,15 @@ export default function CareersPage() {
                   Ready to Join Our Team?
                 </h2>
                 <p className="mt-4 text-xl text-white/80 mb-8">
-                  Explore our open positions and take the next step in your career journey with Ororasoft.
+                  Explore our open positions and take the next step in your
+                  career journey with Ororasoft.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-white text-primary hover:bg-white/90"
+                  >
                     <a href="#openings">View Open Positions</a>
                   </Button>
                   <Button
@@ -922,6 +1057,5 @@ export default function CareersPage() {
         </div>
       </section>
     </>
-  )
+  );
 }
-

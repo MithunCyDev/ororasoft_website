@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { CalendarIcon, XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import mithunImage from "@/public/mithun.jpg";
@@ -13,24 +12,34 @@ export function ConsultationWidget() {
   const [isDismissed, setIsDismissed] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
 
+  // Handle widget visibility on load
   useEffect(() => {
     const dismissed = localStorage.getItem("consultationWidgetDismissed");
     if (dismissed) {
       setIsDismissed(JSON.parse(dismissed));
     }
-    const timer = setTimeout(() => {
+
+    const showTimer = setTimeout(() => {
       if (
         !JSON.parse(
           localStorage.getItem("consultationWidgetDismissed") || "false"
         )
       ) {
         setIsVisible(true);
+
+        // Auto-hide after 20 seconds
+        const hideTimer = setTimeout(() => {
+          setIsVisible(false);
+        }, 20000);
+
+        return () => clearTimeout(hideTimer);
       }
     }, 5000);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(showTimer);
   }, []);
 
+  // Handle re-showing on scroll
   useEffect(() => {
     const handleScroll = () => {
       const position = window.scrollY;
@@ -40,6 +49,9 @@ export function ConsultationWidget() {
         setIsDismissed(false);
         setIsVisible(true);
         localStorage.setItem("consultationWidgetDismissed", "false");
+
+        // Auto-hide again after 20s
+        setTimeout(() => setIsVisible(false), 20000);
       }
     };
 
@@ -47,6 +59,7 @@ export function ConsultationWidget() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isDismissed, scrollPosition]);
 
+  // Dismiss function
   const handleDismiss = () => {
     setIsVisible(false);
     setIsDismissed(true);
@@ -56,42 +69,35 @@ export function ConsultationWidget() {
   if (!isVisible) return null;
 
   return (
-    <div
-      className={cn(
-        "fixed right-0 bottom-24 z-40 flex w-64 flex-col rounded-lg border bg-card p-4 shadow-lg transition-opacity duration-500 md:right-0",
-        isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+    <>
+      {isVisible && (
+        <div className="fixed -right-7 bottom-10 z-40 flex items-center rounded-full bg-primary px-4 py-2">
+          {/* Circular Image */}
+          <div className="relative w-12 h-12 -ml-2 rounded-full overflow-hidden border-2 border-gray-100">
+            <Image
+              src={mithunImage}
+              alt="Consultation Expert"
+              width={80}
+              height={80}
+              className="object-cover"
+            />
+          </div>
+
+          {/* Text Content */}
+          <div className="ml-2 mr-6 text-white">
+            <h3 className="md:text-md sm:text-sm font-semibold">
+              Book Free Consultation
+            </h3>
+          </div>
+
+          {/* Clickable Link (Wrapped Around) */}
+          <Link
+            href="/schedule"
+            className="absolute inset-0"
+            aria-label="Book a free consultation"
+          ></Link>
+        </div>
       )}
-    >
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute right-2 top-2"
-        onClick={handleDismiss}
-        aria-label="Close consultation widget"
-      >
-        <XIcon className="h-4 w-4" />
-      </Button>
-      <div className="mb-3">
-        <h3 className="text-base font-semibold">Need assistance?</h3>
-        <p className="text-xs text-muted-foreground">
-          Book a free consultation with our experts
-        </p>
-      </div>
-      <div className="relative h-24 mb-3 rounded-md bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center overflow-hidden">
-        <Image
-          src={mithunImage}
-          alt="Team of experts"
-          width={80}
-          height={80}
-          className="rounded-full bg-contain"
-        />
-      </div>
-      <Link href="/schedule" className="w-full">
-        <Button size="sm" className="w-full">
-          <CalendarIcon className="mr-2 h-3 w-3" />
-          Book a Consultation
-        </Button>
-      </Link>
-    </div>
+    </>
   );
 }
