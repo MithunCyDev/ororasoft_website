@@ -30,7 +30,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-5 z-50 w-[90%] mx-auto rounded-md bg-background dark:bg-gray-950 ${
+      className={`sticky top-2 z-50 w-[90%] mx-auto rounded-md bg-background dark:bg-gray-950 ${
         isScrolled && "shadow-md shadow-[#00000010] dark:shadow-[#3ec8ff16]"
       } transition-all duration-300`}
     >
