@@ -1,72 +1,88 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { ArrowRight, Code, Database, Globe, Layers, LineChart, Smartphone } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Code,
+  Database,
+  Globe,
+  Layers,
+  LineChart,
+  Smartphone,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function ServicesSection() {
-  const [hoveredService, setHoveredService] = useState<number | null>(null)
+  const [hoveredService, setHoveredService] = useState<number | null>(null);
 
   const services = [
     {
       icon: <Globe className="h-6 w-6" />,
       title: "Web Development",
-      description: "Custom web applications and responsive websites built with modern technologies.",
+      description:
+        "Custom web applications and responsive websites built with modern technologies.",
       link: "/services/web-development",
       color: "from-blue-500/20 to-primary/20",
     },
     {
       icon: <Smartphone className="h-6 w-6" />,
       title: "Mobile Apps",
-      description: "Native and cross-platform mobile applications for iOS and Android.",
+      description:
+        "Native and cross-platform mobile applications for iOS and Android.",
       link: "/services/mobile-apps",
       color: "from-purple-500/20 to-primary/20",
     },
     {
       icon: <Database className="h-6 w-6" />,
       title: "Cloud Solutions",
-      description: "Scalable cloud infrastructure and DevOps services for optimal performance.",
+      description:
+        "Scalable cloud infrastructure and DevOps services for optimal performance.",
       link: "/services/cloud-solutions",
       color: "from-green-500/20 to-primary/20",
     },
     {
       icon: <LineChart className="h-6 w-6" />,
       title: "AI & Machine Learning",
-      description: "Intelligent solutions that leverage data to drive business insights and automation.",
+      description:
+        "Intelligent solutions that leverage data to drive business insights and automation.",
       link: "/services/ai-ml",
       color: "from-orange-500/20 to-primary/20",
     },
     {
       icon: <Code className="h-6 w-6" />,
       title: "Custom Software",
-      description: "Bespoke software solutions designed to address your specific business challenges.",
+      description:
+        "Bespoke software solutions designed to address your specific business challenges.",
       link: "/services/custom-software",
       color: "from-red-500/20 to-primary/20",
     },
     {
       icon: <Layers className="h-6 w-6" />,
       title: "UI/UX Design",
-      description: "User-centered design that creates intuitive and engaging digital experiences.",
+      description:
+        "User-centered design that creates intuitive and engaging digital experiences.",
       link: "/services/ui-ux-design",
       color: "from-yellow-500/20 to-primary/20",
     },
-  ]
+  ];
 
   return (
     <section className="py-24 bg-muted/30 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+      {/* <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute -top-[300px] -left-[300px] w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl"></div>
         <div className="absolute -bottom-[300px] -right-[300px] w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl"></div>
-      </div>
+      </div> */}
 
       <div className="container relative z-10">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <div className="inline-flex items-center justify-center size-16 rounded-full bg-primary/10 mb-6">
             <Layers className="size-8 text-primary" />
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">Our Services</h2>
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+            Our Services
+          </h2>
           <div className="w-24 h-1 bg-primary rounded mx-auto mb-6"></div>
           <p className="text-xl text-muted-foreground">
             Comprehensive software solutions tailored to your business needs
@@ -102,7 +118,9 @@ export function ServicesSection() {
                 >
                   Learn more
                   <ArrowRight
-                    className={`ml-1 h-4 w-4 transition-transform duration-300 ${hoveredService === index ? "translate-x-1" : ""}`}
+                    className={`ml-1 h-4 w-4 transition-transform duration-300 ${
+                      hoveredService === index ? "translate-x-1" : ""
+                    }`}
                   />
                 </Link>
               </div>
@@ -111,7 +129,11 @@ export function ServicesSection() {
         </div>
 
         <div className="mt-16 text-center">
-          <Button asChild size="lg" className="px-8 py-6 text-base rounded-full">
+          <Button
+            asChild
+            size="lg"
+            className="px-8 py-6 text-base rounded-full"
+          >
             <Link href="/services">
               View All Services
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -120,6 +142,5 @@ export function ServicesSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

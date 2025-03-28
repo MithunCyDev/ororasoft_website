@@ -12,7 +12,7 @@ export default function TermsOfServicePage() {
   return (
     <div className="relative">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+      <div className="bg-gray-900 text-white">
         <div className="container mx-auto px-6 py-16 md:py-24">
           <h1 className="text-3xl md:text-5xl font-bold mb-4">
             Terms of Service

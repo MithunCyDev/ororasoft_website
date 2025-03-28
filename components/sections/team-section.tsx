@@ -10,7 +10,7 @@ export function TeamSection() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-primary/5 dark:from-background dark:to-primary/10">
+    <section className="py-24 dark:bg-background">
       <div className="container">
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center justify-center size-16 rounded-full bg-primary/10 mb-6">

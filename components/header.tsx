@@ -43,7 +43,7 @@ export function Header() {
               alt="OroraSoft Logo"
               width={theme === "dark" ? 40 : 150}
               height={40}
-              className="hidden md:block h-6 w-auto"
+              className="block h-6 w-auto"
               priority
             />
           </Link>
@@ -60,13 +60,14 @@ export function Header() {
             <Button
               variant="outline"
               size="sm"
-              className="gap-2 px-6 bg-gray-800 hover:bg-gray-900 text-white hover:text-white"
+              className="gap-2 px-6 border border-gray-300 dark:border-gray-700 hover:bg-gray-800 dark:text-white hover:text-white"
             >
               <PhoneCall className="h-4 w-4" />
               Contact Us
             </Button>
           </Link>
           <ThemeToggle />
+
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
