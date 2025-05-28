@@ -41,7 +41,7 @@ export function TeamSection() {
                   </h3>
                   <p className="text-muted-foreground">
                     With over a decade of experience in the tech industry, our
-                    team has worked with startups and Fortune 500 companies
+                    team has worked with startups and Fortune 50+ companies
                     alike.
                   </p>
                 </div>
@@ -132,7 +132,7 @@ export function TeamSection() {
             <div className="text-muted-foreground">Projects Completed</div>
           </div>
           <div className="p-6 rounded-xl bg-white dark:bg-background border border-primary/10 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/30">
-            <div className="text-4xl font-bold text-primary mb-2">12+</div>
+            <div className="text-4xl font-bold text-primary mb-2">5+</div>
             <div className="text-muted-foreground">Years Experience</div>
           </div>
           <div className="p-6 rounded-xl bg-white dark:bg-background border border-primary/10 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/30">

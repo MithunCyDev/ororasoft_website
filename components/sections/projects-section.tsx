@@ -1,45 +1,46 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight, ExternalLink, Star, Users, Clock } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { motion } from "framer-motion"
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ExternalLink, Star, Users, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { projects } from "@/data/image";
 
 export function ProjectsSection() {
-  const [activeProject, setActiveProject] = useState<number | null>(null)
-  const [isInView, setIsInView] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+  const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsInView(true)
+          setIsInView(true);
         }
       },
-      { threshold: 0.2 },
-    )
+      { threshold: 0.2 }
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+        observer.unobserve(sectionRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  const projects = [
+  const projectData = [
     {
-      title: "E-Commerce Platform",
+      title: "E-Commerce Mobile App",
       description:
-        "A comprehensive e-commerce solution with advanced product filtering, user authentication, and payment processing.",
-      image: "/placeholder.svg?height=400&width=600&text=E-Commerce",
+        "A comprehensive React Native e-commerce solution with advanced product filtering, user authentication, and payment processing etc.",
+      image: projects.ecommerce,
       tags: ["React", "Node.js", "MongoDB", "Stripe"],
       link: "/projects/e-commerce",
       metrics: {
@@ -52,7 +53,7 @@ export function ProjectsSection() {
       title: "Healthcare Management System",
       description:
         "A secure platform for healthcare providers to manage patient records, appointments, and billing information.",
-      image: "/placeholder.svg?height=400&width=600&text=Healthcare",
+      image: projects.healthWebsite,
       tags: ["Angular", "Express", "PostgreSQL", "Docker"],
       link: "/projects/healthcare",
       metrics: {
@@ -62,19 +63,19 @@ export function ProjectsSection() {
       },
     },
     {
-      title: "Financial Analytics Dashboard",
+      title: "Food Delivery Platform",
       description:
-        "Real-time financial data visualization dashboard with predictive analytics and reporting capabilities.",
-      image: "/placeholder.svg?height=400&width=600&text=Analytics",
+        "A modern food delivery platform with real-time order tracking and restaurant management system.",
+      image: projects.foodWebsite,
       tags: ["Vue.js", "Python", "TensorFlow", "AWS"],
-      link: "/projects/analytics",
+      link: "/projects/food-delivery",
       metrics: {
         rating: 5.0,
         clients: 5,
         duration: "3 months",
       },
     },
-  ]
+  ];
 
   return (
     <section
@@ -102,50 +103,57 @@ export function ProjectsSection() {
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">Featured Projects</h2>
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+            Featured Projects
+          </h2>
           <div className="w-24 h-1 bg-primary rounded mx-auto mb-6"></div>
-          <p className="text-xl text-muted-foreground">Explore our recent work and success stories</p>
+          <p className="text-xl text-muted-foreground">
+            Explore our recent work and success stories
+          </p>
         </div>
 
         {/* Creative Project Layout */}
         <div className="relative">
-          {projects.map((project, index) => (
+          {projectData.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className={`mb-16 ${index % 2 === 0 ? "lg:ml-0 lg:mr-auto" : "lg:ml-auto lg:mr-0"} max-w-4xl`}
+              className={`mb-16 ${
+                index % 2 === 0 ? "lg:ml-0 lg:mr-auto" : "lg:ml-auto lg:mr-0"
+              } max-w-4xl`}
             >
               <div
-                className={`group relative overflow-hidden rounded-xl border bg-background transition-all duration-500 hover:-translate-y-1 ${
+                className={`group relative overflow-hidden rounded-xl border bg-background ${
                   index % 2 === 0 ? "lg:pr-12" : "lg:pl-12"
                 }`}
                 onMouseEnter={() => setActiveProject(index)}
                 onMouseLeave={() => setActiveProject(null)}
               >
-                <div className="lg:grid lg:grid-cols-2 lg:items-center">
-                  <div className={`aspect-video overflow-hidden relative ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                <div className="lg:grid lg:grid-cols-2 lg:items-stretch">
+                  <div
+                    className={`relative h-[300px] ${
+                      index % 2 === 1 ? "lg:order-2" : ""
+                    }`}
+                  >
                     <Image
-                      src={project.image || "/placeholder.svg"}
+                      src={project.image}
                       alt={project.title}
-                      width={600}
-                      height={400}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                      fill
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <div className="absolute top-4 right-4">
                       <Link
                         href={project.link}
-                        className="flex items-center justify-center size-10 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-colors"
+                        className="flex items-center justify-center size-10 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30"
                       >
                         <ExternalLink className="size-5" />
                       </Link>
                     </div>
 
                     {/* Project Metrics Badges */}
-                    <div className="absolute bottom-4 left-4 right-4 flex justify-between opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="absolute bottom-4 left-4 right-4 flex justify-between">
                       <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm">
                         <Star className="size-4 mr-1 text-yellow-400" />
                         <span>{project.metrics.rating}</span>
@@ -163,35 +171,39 @@ export function ProjectsSection() {
 
                   <div className="p-6 lg:p-8">
                     <div className="mb-2 inline-flex items-center rounded-full bg-primary/10 px-3 py-1">
-                      <span className="text-xs font-medium text-primary">Project {index + 1}</span>
+                      <span className="text-xs font-medium text-primary">
+                        Project {index + 1}
+                      </span>
                     </div>
                     <h3 className="mb-3 text-2xl font-bold">{project.title}</h3>
-                    <p className="mb-4 text-muted-foreground">{project.description}</p>
+                    <p className="mb-4 text-muted-foreground">
+                      {project.description}
+                    </p>
 
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag, tagIndex) => (
-                        <Badge key={tagIndex} variant="outline" className="bg-primary/5 hover:bg-primary/10">
+                        <Badge
+                          key={tagIndex}
+                          variant="outline"
+                          className="bg-primary/5 hover:bg-primary/10"
+                        >
                           {tag}
                         </Badge>
                       ))}
                     </div>
 
-                    <Link href={project.link} className="inline-flex items-center text-sm font-medium text-primary">
+                    <Link
+                      href={project.link}
+                      className="inline-flex items-center text-sm font-medium text-primary"
+                    >
                       View Case Study
                       <ArrowRight
-                        className={`ml-1 h-4 w-4 transition-transform duration-300 ${activeProject === index ? "translate-x-1" : ""}`}
+                        className={`ml-1 h-4 w-4 transition-transform duration-300 ${
+                          activeProject === index ? "translate-x-1" : ""
+                        }`}
                       />
                     </Link>
                   </div>
-                </div>
-
-                {/* Decorative Corner Element */}
-                <div
-                  className={`absolute ${index % 2 === 0 ? "top-0 right-0" : "top-0 left-0"} w-24 h-24 overflow-hidden`}
-                >
-                  <div
-                    className={`absolute ${index % 2 === 0 ? "-bottom-12 -left-12" : "-bottom-12 -right-12"} w-24 h-24 bg-primary/10 rotate-45 transform origin-top-left`}
-                  ></div>
                 </div>
               </div>
             </motion.div>
@@ -213,6 +225,5 @@ export function ProjectsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

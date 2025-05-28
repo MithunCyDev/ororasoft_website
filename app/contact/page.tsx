@@ -1,19 +1,38 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Mail, MapPin, Phone, Send } from "lucide-react"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useState } from "react";
+import Link from "next/link";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import emailjs from "@emailjs/browser";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 // Form schema
 const formSchema = z.object({
@@ -24,12 +43,15 @@ const formSchema = z.object({
   service: z.string({
     required_error: "Please select a service",
   }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters" }),
-})
+  message: z
+    .string()
+    .min(10, { message: "Message must be at least 10 characters" }),
+});
 
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Initialize form
   const form = useForm<z.infer<typeof formSchema>>({
@@ -42,18 +64,41 @@ export default function ContactPage() {
       service: "",
       message: "",
     },
-  })
+  });
 
   // Handle form submission
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true)
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values)
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      form.reset()
-    }, 1500)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setIsSubmitting(true);
+      setError(null);
+
+      const templateParams = {
+        from_name: values.name,
+        reply_to: values.email,
+        from_email: values.email,
+        to_email: "ororasoft@gmail.com",
+        phone: values.phone || "Not provided",
+        company: values.company || "Not provided",
+        service: values.service,
+        message: values.message,
+        to_name: "OroraSoft",
+      };
+
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      setIsSubmitted(true);
+      form.reset();
+    } catch (err) {
+      setError("Failed to send message. Please try again later.");
+      console.error("Error sending message:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -66,7 +111,8 @@ export default function ContactPage() {
               Contact Us<span className="text-[#3EC9FF]">.</span>
             </h1>
             <p className="mb-8 text-xl text-gray-300">
-              Have a question or ready to start your project? Reach out to us and let's discuss how we can help.
+              Have a question or ready to start your project? Reach out to us
+              and let's discuss how we can help.
             </p>
           </div>
         </div>
@@ -83,7 +129,8 @@ export default function ContactPage() {
                 <div className="mb-8">
                   <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
                   <p className="text-muted-foreground">
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Fill out the form below and we'll get back to you as soon as
+                    possible.
                   </p>
                 </div>
 
@@ -94,15 +141,23 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
                     <p className="text-muted-foreground mb-6">
-                      Your message has been submitted successfully. We'll get back to you shortly.
+                      Your message has been submitted successfully. We'll get
+                      back to you shortly.
                     </p>
-                    <Button onClick={() => setIsSubmitted(false)} variant="outline" className="mt-2">
+                    <Button
+                      onClick={() => setIsSubmitted(false)}
+                      variant="outline"
+                      className="mt-2"
+                    >
                       Send Another Message
                     </Button>
                   </div>
                 ) : (
                   <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <form
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="space-y-6"
+                    >
                       <div className="grid gap-6 md:grid-cols-2">
                         <FormField
                           control={form.control}
@@ -124,7 +179,10 @@ export default function ContactPage() {
                             <FormItem>
                               <FormLabel>Email</FormLabel>
                               <FormControl>
-                                <Input placeholder="john@example.com" {...field} />
+                                <Input
+                                  placeholder="john@example.com"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -140,7 +198,10 @@ export default function ContactPage() {
                             <FormItem>
                               <FormLabel>Phone (Optional)</FormLabel>
                               <FormControl>
-                                <Input placeholder="+1 (555) 123-4567" {...field} />
+                                <Input
+                                  placeholder="+1 (555) 123-4567"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -167,19 +228,34 @@ export default function ContactPage() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Service of Interest</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                            >
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Select a service" />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="web-development">Web Development</SelectItem>
-                                <SelectItem value="mobile-apps">Mobile Apps</SelectItem>
-                                <SelectItem value="cloud-solutions">Cloud Solutions</SelectItem>
-                                <SelectItem value="ai-ml">AI & Machine Learning</SelectItem>
-                                <SelectItem value="custom-software">Custom Software</SelectItem>
-                                <SelectItem value="ui-ux-design">UI/UX Design</SelectItem>
+                                <SelectItem value="web-development">
+                                  Web Development
+                                </SelectItem>
+                                <SelectItem value="mobile-apps">
+                                  Mobile Apps
+                                </SelectItem>
+                                <SelectItem value="cloud-solutions">
+                                  Cloud Solutions
+                                </SelectItem>
+                                <SelectItem value="ai-ml">
+                                  AI & Machine Learning
+                                </SelectItem>
+                                <SelectItem value="custom-software">
+                                  Custom Software
+                                </SelectItem>
+                                <SelectItem value="ui-ux-design">
+                                  UI/UX Design
+                                </SelectItem>
                                 <SelectItem value="other">Other</SelectItem>
                               </SelectContent>
                             </Select>
@@ -206,7 +282,17 @@ export default function ContactPage() {
                         )}
                       />
 
-                      <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      {error && (
+                        <div className="rounded-md bg-destructive/15 p-3 text-sm text-destructive">
+                          {error}
+                        </div>
+                      )}
+
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isSubmitting}
+                      >
                         {isSubmitting ? "Sending..." : "Send Message"}
                       </Button>
                     </form>
@@ -220,7 +306,8 @@ export default function ContactPage() {
               <div>
                 <h2 className="text-3xl font-bold mb-4">Contact Information</h2>
                 <p className="text-muted-foreground mb-8">
-                  Reach out to us directly through any of the following channels.
+                  Reach out to us directly through any of the following
+                  channels.
                 </p>
               </div>
 
@@ -234,9 +321,14 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold mb-1">Email Us</h3>
-                      <p className="text-muted-foreground mb-2">Our team is here to answer any questions</p>
-                      <Link href="mailto:info@ororasoft.com" className="text-primary hover:underline">
-                        info@ororasoft.com
+                      <p className="text-muted-foreground mb-2">
+                        Our team is here to answer any questions
+                      </p>
+                      <Link
+                        href="mailto:ororasoft@gmail.com"
+                        className="text-primary hover:underline"
+                      >
+                        ororasoft@gmail.com
                       </Link>
                     </div>
                   </CardContent>
@@ -251,9 +343,14 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold mb-1">Call Us</h3>
-                      <p className="text-muted-foreground mb-2">Mon-Fri from 9am to 6pm</p>
-                      <Link href="tel:+15551234567" className="text-primary hover:underline">
-                        +1 (555) 123-4567
+                      <p className="text-muted-foreground mb-2">
+                        Mon-Fri from 9am to 6pm
+                      </p>
+                      <Link
+                        href="tel:+15551234567"
+                        className="text-primary hover:underline"
+                      >
+                        +880 1835-623863
                       </Link>
                     </div>
                   </CardContent>
@@ -268,13 +365,13 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold mb-1">Visit Us</h3>
-                      <p className="text-muted-foreground mb-2">Come say hello at our office</p>
+                      <p className="text-muted-foreground mb-2">
+                        Come say hello at our office
+                      </p>
                       <address className="not-italic">
-                        1234 Tech Park Drive,
+                        Batrish, Kishoreganj Sadar
                         <br />
-                        Suite 500,
-                        <br />
-                        San Francisco, CA 94107
+                        Dhaka, Bangladesh
                       </address>
                     </div>
                   </CardContent>
@@ -283,7 +380,7 @@ export default function ContactPage() {
 
               <div className="rounded-lg border overflow-hidden h-[300px] bg-muted">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50470.95397614018!2d-122.43029591729178!3d37.77492951404814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1647234641265!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1816.3747681686568!2d90.77804230653686!3d24.424767444531344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sbatrish%20Kishoreganj%20Sadar%20Upazila!5e0!3m2!1sen!2sbd!4v1748467676232!5m2!1sen!2sbd"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -302,7 +399,9 @@ export default function ContactPage() {
       <section className="py-20 bg-muted/30">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
             <div className="w-24 h-1 bg-primary rounded mx-auto mb-6"></div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Find answers to common questions about our services and processes.
@@ -338,13 +437,16 @@ export default function ContactPage() {
                     "We specialize in a wide range of technologies including React, Next.js, Node.js, Python, mobile app development (iOS & Android), and cloud platforms (AWS, Azure, GCP). We select the best technology stack based on your specific project requirements.",
                 },
                 {
-                  question: "How do you ensure the security of the applications you build?",
+                  question:
+                    "How do you ensure the security of the applications you build?",
                   answer:
                     "Security is built into our development process from the start. We follow industry best practices, conduct regular security audits, implement appropriate authentication and authorization mechanisms, and stay up-to-date with emerging security threats.",
                 },
               ].map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                  <AccordionTrigger className="text-left">
+                    {faq.question}
+                  </AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}
@@ -353,6 +455,5 @@ export default function ContactPage() {
         </div>
       </section>
     </>
-  )
+  );
 }
-

@@ -19,9 +19,9 @@ const roboto = Roboto({
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "OroraSoft - Transforming Ideas into Digital Solutions",
+  title: "OroraSoft | Software Development & AI Solutions Company",
   description:
-    "OroraSoft provides cutting-edge software development services, helping businesses transform their ideas into powerful digital solutions.",
+    "Leading software development company specializing in custom software solutions, web applications, mobile apps, and AI integration. Expert in ERP systems, e-commerce platforms, and digital transformation. Transform your business with our innovative technology solutions.",
 };
 
 export default function RootLayout({
@@ -35,20 +35,13 @@ export default function RootLayout({
         className={`min-h-screen bg-background font-sans antialiased ${roboto.className}`}
       >
         <SessionProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <LinearLoader />
-              <main className="flex-1">{children}</main>
-              <ConsultationWidget />
-              <Footer />
-            </div>
-          </ThemeProvider>
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <LinearLoader />
+            <main className="flex-1">{children}</main>
+            <ConsultationWidget />
+            <Footer />
+          </div>
         </SessionProvider>
       </body>
     </html>

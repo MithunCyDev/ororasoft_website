@@ -1,13 +1,9 @@
 import Image from "next/image";
 import "../../styles/globals.css";
 import logoString from "@/public/logoString.png";
-import string from "@/public/string3.png";
 import { logos } from "@/data/data";
-import { useTheme } from "next-themes";
 
 export function HeroSection() {
-  // const { theme } = useTheme();
-
   return (
     <section className="relative overflow-hidden bg-white dark:bg-gray-950">
       <div className="absolute opacity-30 -z-4 dark:opacity-5 top-2 right-0 rotate-180">

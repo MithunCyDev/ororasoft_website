@@ -2,35 +2,55 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ThemeToggle } from "./theme-toggle";
 import { MainNav } from "./main-nav";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { PhoneCall, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import whiteLogo from "@/public/orora.png";
-import blackLogo from "@/public/ororablack.png";
+import { useTheme } from "next-themes";
+import { logos } from "@/data/image";
 
 export function Header() {
-  const { theme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // After mounting, we can safely show the theme-dependent UI
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
-    // Check initial scroll position
-    handleScroll();
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        // md breakpoint
+        setIsOpen(false);
+      }
+    };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolled]);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <header
-      className={`sticky top-2 z-50 w-[90%] mx-auto rounded-md bg-background dark:bg-gray-950 ${
+      className={`sticky top-0 z-50 w-full mx-auto bg-background dark:bg-gray-950 ${
         isScrolled && "shadow-md shadow-[#00000010] dark:shadow-[#3ec8ff16]"
       } transition-all duration-300`}
     >
@@ -39,11 +59,11 @@ export function Header() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src={theme === "dark" ? whiteLogo : blackLogo}
+              src={resolvedTheme === "dark" ? logos.white : logos.black}
               alt="OroraSoft Logo"
-              width={theme === "dark" ? 40 : 150}
+              width={150}
               height={40}
-              className="block h-6 w-auto"
+              className="block h-6 w-auto object-contain"
               priority
             />
           </Link>
@@ -54,7 +74,7 @@ export function Header() {
           <MainNav />
         </div>
 
-        {/* Right side (Contact, Theme Toggle, Mobile Menu) */}
+        {/* Right side (Contact, Mobile Menu) */}
         <div className="flex items-center gap-4">
           <Link href="/contact" className="hidden md:inline-flex">
             <Button
@@ -66,13 +86,11 @@ export function Header() {
               Contact Us
             </Button>
           </Link>
-          <ThemeToggle />
 
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
                 <Menu className="h-5 w-5" />
-                {/* <span className="sr-only">Toggle menu</span> */}
               </Button>
             </SheetTrigger>
 
@@ -116,13 +134,13 @@ export function Header() {
                 </Link>
 
                 <Link href="/contact" className="mt-4">
-                  <button
-                    className=" flex items-center justify-center font-medium rounded-md p-2 w-full gap-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-800
+                  <Button
+                    className="flex items-center justify-center font-medium rounded-md p-2 w-full gap-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-800
                    text-gray-800 dark:text-gray-200 hover:text-white transition-all duration-150"
                   >
                     <PhoneCall className="h-4 w-4 text-[#3EC9FF]" />
                     Contact Us
-                  </button>
+                  </Button>
                 </Link>
               </nav>
             </SheetContent>

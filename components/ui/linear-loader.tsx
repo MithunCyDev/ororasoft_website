@@ -55,7 +55,7 @@ export function LinearLoader() {
   return (
     <div
       className={cn(
-        "fixed top-20 left-0 right-0 h-1 z-50 transition-opacity duration-300",
+        "fixed top-18 left-0 right-0 h-1 z-50 transition-opacity duration-300",
         loading ? "opacity-100" : "opacity-0"
       )}
     >
