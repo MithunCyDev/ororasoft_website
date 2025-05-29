@@ -6,7 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ConsultationWidget } from "@/components/consultation-widget";
-import SessionProvider from "@/components/session-provider";
 import { LinearLoader } from "@/components/ui/linear-loader";
 
 const roboto = Roboto({
@@ -34,15 +33,13 @@ export default function RootLayout({
       <body
         className={`min-h-screen bg-background font-sans antialiased ${roboto.className}`}
       >
-        <SessionProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <LinearLoader />
-            <main className="flex-1">{children}</main>
-            <ConsultationWidget />
-            <Footer />
-          </div>
-        </SessionProvider>
+        <div className="relative flex min-h-screen flex-col">
+          <Header />
+          <LinearLoader />
+          <main className="flex-1">{children}</main>
+          <ConsultationWidget />
+          <Footer />
+        </div>
       </body>
     </html>
   );

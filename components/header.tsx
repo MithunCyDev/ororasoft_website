@@ -43,11 +43,6 @@ export function Header() {
     };
   }, []);
 
-  // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return null;
-  }
-
   return (
     <header
       className={`sticky top-0 z-50 w-full mx-auto bg-background dark:bg-gray-950 ${
@@ -59,7 +54,9 @@ export function Header() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src={resolvedTheme === "dark" ? logos.white : logos.black}
+              src={
+                mounted && resolvedTheme === "dark" ? logos.white : logos.black
+              }
               alt="OroraSoft Logo"
               width={150}
               height={40}
