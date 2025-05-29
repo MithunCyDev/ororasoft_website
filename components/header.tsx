@@ -77,7 +77,7 @@ export function Header() {
             <Button
               variant="outline"
               size="sm"
-              className="gap-2 px-6 border border-gray-300 dark:border-gray-700 hover:bg-gray-800 dark:text-white hover:text-white"
+              className="gap-2 px-6 border border-gray-300 hover:bg-gray-800 hover:text-white"
             >
               <PhoneCall className="h-4 w-4" />
               Contact Us
@@ -132,10 +132,10 @@ export function Header() {
 
                 <Link href="/contact" className="mt-4">
                   <Button
-                    className="flex items-center justify-center font-medium rounded-md p-2 w-full gap-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-800
-                   text-gray-800 dark:text-gray-200 hover:text-white transition-all duration-150"
+                    className="flex items-center justify-center font-medium rounded-md p-2 w-full gap-2 border border-gray-300  hover:bg-gray-800
+                   text-gray-800 hover:text-white transition-all duration-150"
                   >
-                    <PhoneCall className="h-4 w-4 text-[#3EC9FF]" />
+                    <PhoneCall className="h-4 w-4 " />
                     Contact Us
                   </Button>
                 </Link>
