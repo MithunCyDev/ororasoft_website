@@ -21,6 +21,10 @@ export const projects = {
     "https://raw.githubusercontent.com/MithunCyDev/Image-To-Text/main/src/foodapp.jpg",
 } as const;
 
+export const leader = {
+  ceo: "https://raw.githubusercontent.com/MithunCyDev/Image-To-Text/main/src/ceo.png",
+};
+
 // App Icons
 export const appIcons = {
   mney: {

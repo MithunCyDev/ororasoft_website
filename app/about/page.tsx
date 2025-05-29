@@ -1,12 +1,14 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Award, BarChart, Clock, Lightbulb, Target, Users } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Image from "next/image";
+import Link from "next/link";
+import { Award, BarChart, Clock, Lightbulb, Target, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { leader } from "@/data/image";
 
 export const metadata = {
   title: "About Us | Ororasoft",
-  description: "Learn about Ororasoft's mission, values, and the team behind our innovative software solutions.",
-}
+  description:
+    "Learn about Ororasoft's mission, values, and the team behind our innovative software solutions.",
+};
 
 export default function AboutPage() {
   return (
@@ -19,8 +21,8 @@ export default function AboutPage() {
               About Ororasoft<span className="text-[#3EC9FF]">.</span>
             </h1>
             <p className="mb-8 text-xl text-gray-300">
-              We're a team of passionate technologists on a mission to transform businesses through innovative software
-              solutions.
+              We're a team of passionate technologists on a mission to transform
+              businesses through innovative software solutions.
             </p>
           </div>
         </div>
@@ -33,9 +35,13 @@ export default function AboutPage() {
           <div className="grid gap-12 md:grid-cols-2 items-center">
             <div>
               <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 mb-4">
-                <span className="text-sm font-medium text-primary">OUR PURPOSE</span>
+                <span className="text-sm font-medium text-primary">
+                  OUR PURPOSE
+                </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Mission & Vision</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Mission & Vision
+              </h2>
               <div className="space-y-6">
                 <div className="flex">
                   <div className="mr-4 mt-1">
@@ -46,8 +52,9 @@ export default function AboutPage() {
                   <div>
                     <h3 className="text-xl font-bold mb-2">Our Mission</h3>
                     <p className="text-muted-foreground">
-                      To empower businesses with innovative software solutions that drive growth, efficiency, and
-                      competitive advantage in an ever-evolving digital landscape.
+                      To empower businesses with innovative software solutions
+                      that drive growth, efficiency, and competitive advantage
+                      in an ever-evolving digital landscape.
                     </p>
                   </div>
                 </div>
@@ -61,8 +68,10 @@ export default function AboutPage() {
                   <div>
                     <h3 className="text-xl font-bold mb-2">Our Vision</h3>
                     <p className="text-muted-foreground">
-                      To be the leading technology partner known for transformative digital solutions that enable our
-                      clients to thrive in a rapidly changing world, backed by integrity, innovation, and excellence.
+                      To be the leading technology partner known for
+                      transformative digital solutions that enable our clients
+                      to thrive in a rapidly changing world, backed by
+                      integrity, innovation, and excellence.
                     </p>
                   </div>
                 </div>
@@ -90,11 +99,13 @@ export default function AboutPage() {
             <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 mb-6">
               <Award className="h-8 w-8 text-primary" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Our Core Values
+            </h2>
             <div className="w-24 h-1 bg-primary rounded mx-auto mb-6"></div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              These principles guide our decisions, shape our culture, and define how we work with our clients and each
-              other.
+              These principles guide our decisions, shape our culture, and
+              define how we work with our clients and each other.
             </p>
           </div>
 
@@ -120,7 +131,8 @@ export default function AboutPage() {
               },
               {
                 title: "Collaboration",
-                description: "We believe the best results come from working together—with our clients and as a team.",
+                description:
+                  "We believe the best results come from working together—with our clients and as a team.",
                 iconBg: "from-orange-500/20 to-primary/20",
               },
               {
@@ -171,8 +183,8 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Journey</h2>
             <div className="w-24 h-1 bg-primary rounded mx-auto mb-6"></div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              From our humble beginnings to where we are today, we've been committed to excellence every step of the
-              way.
+              From our humble beginnings to where we are today, we've been
+              committed to excellence every step of the way.
             </p>
           </div>
 
@@ -193,12 +205,14 @@ export default function AboutPage() {
               {
                 year: "2015",
                 title: "Expansion",
-                description: "Expanded our team and opened our first international office to serve clients globally.",
+                description:
+                  "Expanded our team and opened our first international office to serve clients globally.",
               },
               {
                 year: "2018",
                 title: "Innovation Award",
-                description: "Received industry recognition for our innovative approach to software development.",
+                description:
+                  "Received industry recognition for our innovative approach to software development.",
               },
               {
                 year: "2021",
@@ -213,11 +227,16 @@ export default function AboutPage() {
                   "Constantly evolving and growing, with a focus on emerging technologies and client success.",
               },
             ].map((item, index) => (
-              <div key={index} className="mb-12 ml-8 md:ml-0 md:grid md:grid-cols-5 md:gap-8">
+              <div
+                key={index}
+                className="mb-12 ml-8 md:ml-0 md:grid md:grid-cols-5 md:gap-8"
+              >
                 <div className="md:col-span-1 flex md:justify-end">
                   <div className="flex items-center md:flex-col md:items-end">
                     <div className="absolute -left-[9px] md:static md:mr-8 h-4 w-4 rounded-full bg-primary"></div>
-                    <div className="font-bold text-xl text-primary md:mt-2">{item.year}</div>
+                    <div className="font-bold text-xl text-primary md:mt-2">
+                      {item.year}
+                    </div>
                   </div>
                 </div>
 
@@ -238,20 +257,23 @@ export default function AboutPage() {
             <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 mb-6">
               <Users className="h-8 w-8 text-primary" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Leadership Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Our Leadership Team
+            </h2>
             <div className="w-24 h-1 bg-primary rounded mx-auto mb-6"></div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Meet the talented individuals who drive our vision forward and ensure we deliver exceptional results.
+              Meet the talented individuals who drive our vision forward and
+              ensure we deliver exceptional results.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                name: "Alex Johnson",
+                name: "Mithun Cy",
                 position: "Chief Executive Officer",
-                bio: "With over 15 years of experience in technology leadership, Alex guides our strategic vision and growth.",
-                image: "/placeholder.svg?height=300&width=300&text=AJ",
+                bio: "With over 10+ years of experience in technology leadership, Alex guides our strategic vision and growth.",
+                image: leader.ceo,
               },
               {
                 name: "Sarah Chen",
@@ -361,10 +383,13 @@ export default function AboutPage() {
             <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 mb-6">
               <BarChart className="h-8 w-8 text-primary" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact By The Numbers</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Our Impact By The Numbers
+            </h2>
             <div className="w-24 h-1 bg-primary rounded mx-auto mb-6"></div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We're proud of the impact we've made for our clients and the growth we've achieved together.
+              We're proud of the impact we've made for our clients and the
+              growth we've achieved together.
             </p>
           </div>
 
@@ -379,7 +404,9 @@ export default function AboutPage() {
                 key={index}
                 className="p-6 rounded-xl bg-white dark:bg-background border border-primary/10 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/30"
               >
-                <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
+                <div className="text-4xl font-bold text-primary mb-2">
+                  {stat.value}
+                </div>
                 <div className="text-muted-foreground">{stat.label}</div>
               </div>
             ))}
@@ -397,11 +424,15 @@ export default function AboutPage() {
                   Ready to work with us?
                 </h2>
                 <p className="mt-4 text-xl text-white/80 mb-8">
-                  Let's discuss how Ororasoft can help you achieve your business goals with innovative software
-                  solutions.
+                  Let's discuss how Ororasoft can help you achieve your business
+                  goals with innovative software solutions.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-white text-primary hover:bg-white/90"
+                  >
                     <Link href="/contact">Contact Us Today</Link>
                   </Button>
                   <Button
@@ -419,6 +450,5 @@ export default function AboutPage() {
         </div>
       </section>
     </>
-  )
+  );
 }
-
